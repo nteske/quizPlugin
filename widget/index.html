@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <script src="../../../scripts/buildfire.min.js"></script>
+    <!-- build:bundleWidgetBFMinJS  -->
+
+    <!-- endbuild -->
+
+    <!-- build:bundleJSFiles  -->
+    <script src="./index.js" type="module"></script>
+    <!-- endbuild -->
+    <!-- build:bundleCSSFiles  -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <div>
+        <div id="questions">
+            <h2 id="questionTitle" class="questionTitle"></h2>
+            <div id="questionBody" class="questionBody"></div>
+        </div>
+        <ul id="answers"></ul>
+        <button id="submitBtn" class="btn btn-success submitBtn" onClick="nextQuestion()">Next question</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../assets/base.css">
+
+    <link rel="stylesheet" href="../assets/sortableList.css">
+    <link rel="stylesheet" href="../assets/linearicons/cpIcons.css">
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    <script src="../../../../scripts/tinymce/tinymce.min.js"></script>
+
+    <!-- build:bundleDataJSFiles  -->
+    <script src="../../data/question.js"></script>
+    <script src="../../dataAccess/questions.js"></script>
+    <!-- endbuild -->
+    <script src="../../../../scripts/sortable.min.js"></script>
+
+    <!-- build:bundleJSFiles  -->
+    <script src="./js/questionsForm.js"></script>
+    <script src="./js/sortableList.js"></script>
+    <script src="./js/sortableListUI.js"></script>
+    <!-- endbuild -->
+
+    <!-- End of Scripts -->
+
+</head>
+
+<body>
+    <h4 class="section__title">Question Form</h4>
+
+    <div class='row'>
+        <div class='col-xs-6'>
+            <label for="questionTitle">Question Title</label>
+            <input type="text" id="questionTitle" class="form-control" />
+        </div>
+    </div>
+    <br>
+    <div class='row'>
+        <div class='col-xs-8'>
+            <label for="questionBody">Question Body</label>
+
+            <textarea name="content" id="questionBody"></textarea>
+        </div>
+    </div>
+    <br>
+    <div class='row'>
+        <div class='col-xs-6'>
+            <label for="questionType">Question Type</label>
+            <div class='dropdown'>
+                <img src='../../resources/check.png' class='chev' />
+
+                <select name="questionType" class="form-control" id="questionType">
+                    <option value="one">One Answer</option>
+                    <option value="multi">Multiple</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div class='row'>
+        <div class='col-xs-6'>
+            <label for="questionPoints">How many points this questions gains</label>
+            <input value="" id="questionPoints" class="form-control" type="number" min="1" max="10">
+        </div>
+    </div>
+    <br>
+    <h1>Answers</h1>
+    <div class='row'>
+        <div class='col-xs-6'>
+            <label for="answerTitle">Input Answer</label>
+            <input value="" id="answerTitle" class="form-control" type="text">
+        </div>
+        <div class='col-xs-6'>
+            <label for="correctAnswer">Is it correct answer?</label>
+            <input id="correctAnswer" type="checkbox">
+            <br>
+            <button class="btn btn-primary btn-icon icon icon-plus" onclick="addAnswer()"><span> Add</span>
+        </div>
+    </div>
+    </button>
+    <div id="answers"></div>
+    <br>
+    <button class="btn btn-danger" onclick="cancel()">
+        <span id="buttonText">Cancel</span>
+    </button>
+    <button class="btn btn-success" onclick="save()">
+        <span id="buttonText">Save</span>
+    </button>
+
+</html>

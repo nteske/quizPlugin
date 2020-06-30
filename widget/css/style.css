@@ -1,0 +1,48 @@
+
+ul {
+  list-style-type: none;
+  padding-inline-start:0px!important;
+}
+
+.emptyState {
+  background-image: url('./images/empty_page.svg');
+  background-repeat: no-repeat;
+  background-attachment: absolute;
+  background-position: center;
+  height: 80vh;
+}
+
+.emptyState::after {
+  content: "You have no question at the moment!";
+  position: absolute;
+  text-align: center;
+  bottom: 30%;
+  width: 100%;
+}
+
+.questionTitle {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.questionBody {
+  padding: 20px;
+}
+
+.submitBtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+ul {
+  margin-left: 10px;
+}
+
+ul > li {
+  padding: 10px;
+}
+
+.answerTitle {
+  padding-left: 5px;
+}

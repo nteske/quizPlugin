@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="../assets/linearicons/cpIcons.css">
+    <link rel="stylesheet" href="../assets/sortableList.css">
+
+    <script src="../../../../scripts/buildfire.min.js"></script>
+
+    <!-- build:bundleControlBFMinJS  -->
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    <!-- endbuild -->
+    <script src="../../../../scripts/sortable.min.js"></script>
+
+    <!-- build:bundleDataJSFiles  -->
+    <script src="../../data/question.js"></script>
+    <script src="../../dataAccess/questions.js"></script>
+    <!-- endbuild -->
+    <!-- build:bundleJSFiles  -->
+    <script src="./js/sortableList.js"></script>
+    <script src="./js/sortableListUI.js"></script>
+    <!-- endbuild -->
+
+
+    <!-- End of Scripts -->
+</head>
+
+<body>
+    <h4 class="section__title">Questions</h4>
+
+
+    <div>
+        <a href="./questionForm.html"><button class="btn btn-success"><span
+                    class="icon icon-plus"></span>Add</button></a>
+        <div id="items"></div>
+
+    </div>
+    <script>
+        
+        window.onload = function () {
+            sortableListUI.init("items", Questions.TAG);
+        }
+    </script>
+
+</body>
+
+</html>

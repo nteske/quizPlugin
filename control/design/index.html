@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- JS -->
+  <script src="../../../../scripts/buildfire.js"></script>
+
+  <!-- build:bundleCSSFiles  -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="./css/linearicons/cpIcons.css">
+  <!-- endbuild -->
+
+  <!-- build:bundleJSFiles  -->
+  <script src="../../data/settings.js"></script>
+  <script src="../../dataAccess/settingsAccess.js"></script>
+  <!-- endbuild -->
+
+</head>
+
+<body>
+  <main class="padded">
+    <form>
+      <div class="form-group item checkbox checkbox-primary">
+        <input type="checkbox" id="chkCustomColors" onchange="toggleCustomColors()">
+        <label for="chkCustomColors">Use Custom Colors</label>
+      </div>
+      <div class="form-group form-option hidden" id="colorPickerForm">
+        <label>Color</label>
+        <div id="colorPickerContainer" onclick="setColor()">
+          <div id="colorPicker"></div>
+        </div>
+      </div>
+    </form>
+  </main>
+</body>
+<script>
+  var settingsData, color = false;
+  initialize();
+
+  function toggleCustomColors() {
+    if (!chkCustomColors.checked)
+      colorPickerForm.classList.add("hidden");
+    else {
+      colorPickerForm.classList.remove("hidden");
+      if (settingsData.Color.colorType === "gradient") colorPicker.setAttribute("style", settingsData.Color.gradient.backgroundCSS + ";");
+      else colorPicker.setAttribute("style", settingsData.Color.solid.backgroundCSS + ";");
+    }
+    settingsData.useCustomColor = chkCustomColors.checked;
+    handleSave();
+  }
+
+  var options = { backdrop: false, position: "left" };
+  var data = {};
+
+  var callback = function (error, result) {
+      settingsData.Color = result;
+      settingsData.useCustomColor = true;
+      if (settingsData.Color.colorType === "gradient") colorPicker.setAttribute("style", settingsData.Color.gradient.backgroundCSS + ";");
+      else colorPicker.setAttribute("style", settingsData.Color.solid.backgroundCSS + ";");
+      handleSave();
+  };
+  var onchange = function (error, result) {
+    //you can show how it looks like on live
+  };
+
+  function setColor() {
+    color = false;
+    buildfire.colorLib.showDialog(settingsData.Color, options, onchange, callback);
+  }
+
+  function handleSave() {
+    SettingsAccess.save(settingsData, (err, result) => {
+      if (err) return;
+    });
+  }
+
+  function initialize() {
+    SettingsAccess.get((err, data) => {
+      if (err) return console.log(err);
+      settingsData = Object.assign(data);
+      if (settingsData.useCustomColor) {
+        colorPickerForm.classList.remove("hidden");
+        if (settingsData.Color.colorType === "gradient") colorPicker.setAttribute("style", settingsData.Color.gradient.backgroundCSS + ";");
+        else colorPicker.setAttribute("style", settingsData.Color.solid.backgroundCSS + ";");
+        chkCustomColors.checked = true;
+      }
+    });
+  };
+
+</script>
+
+</html>
